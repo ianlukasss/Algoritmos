@@ -1,0 +1,49 @@
+from queue import Queue
+
+# Crear cola
+cola = Queue()
+
+# Cargar datos
+cola.put(("Tony Stark", "Iron Man", "M"))
+cola.put(("Steve Rogers", "Capitán América", "M"))
+cola.put(("Natasha Romanoff", "Black Widow", "F"))
+cola.put(("Carol Danvers", "Capitana Marvel", "F"))
+cola.put(("Scott Lang", "Ant-Man", "M"))
+cola.put(("Stephen Strange", "Doctor Strange", "M"))
+
+# Cola auxiliar
+aux = Queue()
+
+while not cola.empty():
+    personaje, heroe, genero = cola.get()
+
+    # a
+    if heroe == "Capitana Marvel":
+        print("a) Nombre del personaje:", personaje)
+
+    # b
+    if genero == "F":
+        print("b) Superhéroe femenino:", heroe)
+
+    # c
+    if genero == "M":
+        print("c) Personaje masculino:", personaje)
+
+    # d
+    if personaje == "Scott Lang":
+        print("d) Superhéroe de Scott Lang:", heroe)
+
+    # e
+    if personaje.startswith("S") or heroe.startswith("S"):
+        print("e) Datos:", personaje, "-", heroe, "-", genero)
+
+    # f
+    if personaje == "Carol Danvers":
+        print("f) Carol Danvers se encuentra en la cola.")
+        print("   Superhéroe:", heroe)
+
+    aux.put((personaje, heroe, genero))
+
+# Restaurar la cola original
+while not aux.empty():
+    cola.put(aux.get())
